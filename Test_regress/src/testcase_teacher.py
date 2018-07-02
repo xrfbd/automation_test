@@ -72,11 +72,11 @@ class TeacherTest(unittest.TestCase):
         except:   
             while self.i < 2:
                self.i = self.i + 1
-                self.test_create_teacher()
+               self.test_create_teacher()
            
         get_name = ba.is_element_present("link text", name)
         rs = False
-       if get_name:
+        if get_name:
             rs = True
         #else:
             #while self.i < 2:
