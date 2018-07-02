@@ -139,14 +139,19 @@ class TeacherTest(unittest.TestCase):
     def test_delete_teacher(self):      
         ba = Base(self.driver)
         time.sleep(2)
-        get_name = self.driver.execute_script("return $('.odd .text-center').eq(1).text()")#取第一个老师
+        get_name = self.driver.execute_script("return $('.odd .text-center').eq(1).text()")#删除第一个老师
         teacher_management.delete_teacher(self.cfg, self.driver)
         time.sleep(30)
 
-        get_newname = self.driver.execute_script("return $('.odd .text-center').eq(1).text()")#取第一个老师
+        get_newname = self.driver.execute_script("return $('.odd .text-center').eq(1).text()")#检查第一个老师是否删除
         self.assertNotEqual(get_name, get_newname)
         filename = ba.save_screenshot()
         print "image:"+filename
+
+        time.sleep(2)
+        get_name = self.driver.execute_script("return $('.odd .text-center').eq(1).text()")#删除第二个老师
+        teacher_management.delete_teacher(self.cfg, self.driver)
+        time.sleep(30)
 
     def tearDown(self): #在每个测试方法执行后调用，这个地方做所有清理工作
         self.driver.quit()
